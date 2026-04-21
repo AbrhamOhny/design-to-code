@@ -1,0 +1,157 @@
+@import 'tailwindcss';
+@import './fonts/crimson-text/stylesheet.css';
+@import './fonts/dm-sans/stylesheet.css';
+@theme {
+  --color-background: hsl(0, 0%, 100%);
+  /* Accent */
+  --color-accent1: hsl(76, 68.81%, 21.37%);
+  --color-accent2: hsl(80.53, 50%, 85.1%);
+  --color-accent3: hsl(83.33, 15.38%, 54.12%);
+  --color-accent4: hsl(0, 0%, 0%);
+  --color-accent5: hsl(0, 0%, 43.53%);
+  --color-accent6: hsl(0, 0%, 57.25%);
+  --color-accent7: hsl(0, 0%, 89.41%);
+  /* Text */
+  --color-headline: hsl(0, 0%, 0%);
+  --color-paragraph: hsl(0, 0%, 43.53%);
+  --color-captions: hsl(76, 68.81%, 21.37%);
+  --color-link-color: hsl(0, 0%, 0%);
+  --color-on-accent1: hsl(0, 0%, 100%);
+  /* Divider */
+  --color-divider: hsl(0, 0%, 91.37%);
+}
+/* Base */
+* {
+  transition-property: background, transform, translate;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+body {
+  @apply bg-background;
+  font-family: 'Crimson Text';
+}
+/* Breakpoint (Mobile) */
+.text-display-statistics {
+  font-family: 'DM Sans';
+  font-weight: regular;
+  font-size: 64px;
+  letter-spacing: -4%;
+  line-height: 100%;
+}
+.text-display {
+  font-family: 'Crimson Text';
+  font-weight: regular;
+  font-size: 76px;
+  letter-spacing: -4.5%;
+  line-height: 85%;
+}
+.text-heading1 {
+  font-family: 'Crimson Text';
+  font-weight: regular;
+  font-size: 50px;
+  letter-spacing: -3%;
+  line-height: 95%;
+}
+.text-heading2 {
+  font-family: 'Crimson Text';
+  font-weight: regular;
+  font-size: 32px;
+  letter-spacing: -4%;
+  line-height: 110%;
+}
+.text-heading3 {
+  font-family: 'Crimson Text';
+  font-weight: regular;
+  font-size: 18px;
+  letter-spacing: -3%;
+  line-height: 100%;
+}
+.text-paragraph {
+  font-family: 'DM Sans';
+  font-weight: regular;
+  font-size: 15px;
+  letter-spacing: -0.5%;
+  line-height: 140%;
+}
+.text-link {
+  font-family: 'DM Sans';
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: -2.5%;
+  line-height: 140%;
+}
+.text-captions {
+  font-family: 'Roboto Mono';
+  font-weight: regular;
+  font-size: 10.5px;
+  letter-spacing: -3%;
+  line-height: 140%;
+}
+.text-nav-header {
+  font-family: 'DM Sans';
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 120%;
+  letter-spacing: -5%;
+}
+/* Breakpoints (Tablet) */
+@media (min-width: 800px) {
+  .text-display-statistics {
+    font-size: 80px;
+    letter-spacing: -4%;
+    line-height: 100%;
+  }
+  .text-display {
+    font-size: 140px;
+    letter-spacing: -5%;
+    line-height: 80%;
+  }
+  .text-heading1 {
+    font-size: 54px;
+    letter-spacing: -3%;
+    line-height: 90%;
+  }
+  .text-heading2 {
+    font-size: 40px;
+    letter-spacing: -4%;
+    line-height: 110%;
+  }
+  .text-heading3 {
+    font-size: 18px;
+    letter-spacing: -3%;
+    line-height: 100%;
+  }
+  .text-captions {
+    font-size: 11px;
+    letter-spacing: -1%;
+    line-height: 140%;
+  }
+}
+/* Breakpoints (Desktop) */
+@media (min-width: 1200px) {
+  .text-display-statistics {
+    font-size: 80px;
+    letter-spacing: -4%;
+    line-height: 100%;
+  }
+  .text-display {
+    font-size: 160px;
+    letter-spacing: -5%;
+    line-height: 85%;
+  }
+  .text-heading1 {
+    font-size: 60px;
+    letter-spacing: -3%;
+    line-height: 90%;
+  }
+  .text-heading2 {
+    font-size: 40px;
+    letter-spacing: -4%;
+    line-height: 105%;
+  }
+  .text-captions {
+    font-size: 12px;
+    letter-spacing: -1%;
+    line-height: 140%;
+  }
+}

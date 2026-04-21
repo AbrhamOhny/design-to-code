@@ -1,0 +1,37 @@
+<script lang="ts" setup>
+import LinkArrow from './icons/LinkArrow.vue'
+const { link, isPrimary = true } = defineProps<{
+  link?: string
+  isPrimary?: boolean
+}>()
+</script>
+<template>
+  <button
+    v-if="!link"
+    class="rounded-full px-[22px] py-[14px] text-link cursor-pointer"
+    :class="
+      isPrimary
+        ? 'text-link-color bg-accent2 hover:text-on-accent1 hover:bg-accent3'
+        : 'text-on-accent1 bg-accent3 hover:text-link-color hover:bg-accent2'
+    "
+  >
+    <slot />
+  </button>
+  <a
+    v-else
+    :href="link"
+    class="inline-flex rounded-full px-[22px] py-[14px] text-link group"
+    :class="
+      isPrimary
+        ? 'text-on-accent1 bg-accent1 hover:text-on-accent1 hover:bg-accent3'
+        : 'text-on-accent1 bg-accent3 hover:text-on-accent1 hover:bg-accent1'
+    "
+  >
+    <div class="flex flex-row items-center gap-1 group">
+      <span><slot /></span>
+      <span class="group-hover:-translate-y-2">
+        <LinkArrow />
+      </span>
+    </div>
+  </a>
+</template>
