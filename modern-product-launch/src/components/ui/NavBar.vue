@@ -17,10 +17,10 @@ const viewMode = inject<Ref<string>>('viewMode', ref('desktop'))
     <div class="flex flex-row items-center relative justify-between w-full">
       <span class="text-nav-header"> Area </span>
       <div
-        class="fixed flex flex-row rounded-full backdrop-blur-[15px] gap-[27px] z-50 inset-x-0 mx-auto w-fit text-link px-[24px] py-[20px]"
+        class="fixed flex flex-row rounded-full backdrop-blur-[15px] bg-background/40 gap-[27px] z-50 inset-x-0 mx-auto w-fit text-link px-[24px] py-[20px]"
         v-if="viewMode !== 'mobile'"
       >
-        <button>Benefits</button>
+        <a href="#benefits">Benefits</a>
         <button>Specifications</button>
         <button>How-to</button>
         <button>Contact Us</button>

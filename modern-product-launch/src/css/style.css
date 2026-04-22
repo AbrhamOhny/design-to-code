@@ -13,8 +13,8 @@
   --color-accent7: hsl(0, 0%, 89.41%);
   /* Text */
   --color-headline: hsl(0, 0%, 0%);
-  --color-paragraph: hsl(0, 0%, 43.53%);
-  --color-captions: hsl(76, 68.81%, 21.37%);
+  --color-paragraph-color: hsl(0, 0%, 43.53%);
+  --color-captions-color: hsl(76, 68.81%, 21.37%);
   --color-link-color: hsl(0, 0%, 0%);
   --color-on-accent1: hsl(0, 0%, 100%);
   /* Divider */
@@ -33,45 +33,46 @@ body {
 /* Breakpoint (Mobile) */
 .text-display-statistics {
   font-family: 'DM Sans';
-  font-weight: regular;
+  font-weight: normal;
   font-size: 64px;
   letter-spacing: -4%;
   line-height: 100%;
 }
 .text-display {
   font-family: 'Crimson Text';
-  font-weight: regular;
+  font-weight: normal;
   font-size: 76px;
   letter-spacing: -4.5%;
   line-height: 85%;
 }
 .text-heading1 {
   font-family: 'Crimson Text';
-  font-weight: regular;
+  font-weight: normal;
   font-size: 50px;
   letter-spacing: -3%;
   line-height: 95%;
 }
 .text-heading2 {
   font-family: 'Crimson Text';
-  font-weight: regular;
+  font-weight: normal;
   font-size: 32px;
   letter-spacing: -4%;
   line-height: 110%;
 }
 .text-heading3 {
   font-family: 'Crimson Text';
-  font-weight: regular;
+  font-weight: normal;
   font-size: 18px;
   letter-spacing: -3%;
   line-height: 100%;
 }
 .text-paragraph {
   font-family: 'DM Sans';
-  font-weight: regular;
+  font-weight: normal;
   font-size: 15px;
   letter-spacing: -0.5%;
   line-height: 140%;
+  @apply text-paragraph-color;
 }
 .text-link {
   font-family: 'DM Sans';
@@ -82,10 +83,11 @@ body {
 }
 .text-captions {
   font-family: 'Roboto Mono';
-  font-weight: regular;
+  font-weight: normal;
   font-size: 10.5px;
   letter-spacing: -3%;
   line-height: 140%;
+  @apply text-captions-color;
 }
 .text-nav-header {
   font-family: 'DM Sans';
