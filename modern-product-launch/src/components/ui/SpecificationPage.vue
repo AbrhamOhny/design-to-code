@@ -126,19 +126,19 @@ const specs: _spec[] = [
         "
       >
         <h3
-          class="text-center pt-10 pb-5 text-heading3 border-b border-accent5 text-paragraph font-semibold!"
+          class="text-center pt-10 pb-5 text-item-heading border-b border-accent5 text-paragraph"
           :class="index_parent === 0 ? 'text-accent4!' : ''"
         >
           {{ value.title }}
         </h3>
         <div
-          class="flex flex-row py-8 px-5 gap-2 text-captions border-b border-accent5/20"
+          class="flex flex-row py-7 px-5 gap-2 text-captions border-b border-accent5/20"
           :class="
             index_parent % 2 !== 0
-              ? index_child !== value.details.length - 1
-                ? 'border-b border-r'
-                : 'border-r'
-              : ''
+              ? 'border-r'
+              : index_child === value.details.length - 1
+                ? 'border-b-0'
+                : ''
           "
           v-for="(detail, index_child) in value.details"
           :key="index_child"
