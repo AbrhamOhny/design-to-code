@@ -1,6 +1,8 @@
-# modern-product-launch
+# [modern-product-launch](https://www.figma.com/community/file/1487309170684591074/modern-product-launch)
 
-This template should help get you started developing with Vue 3 in Vite.
+https://www.figma.com/community/file/1487309170684591074/modern-product-launch
+
+Bellow is default vue-project init
 
 ## Recommended IDE Setup
 
