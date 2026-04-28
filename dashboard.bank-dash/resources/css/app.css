@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(216, 33.33%, 97.06%);
+  --color-background-darker: hsl(204, 42.86%, 93.14%);
+  --color-primary: hsl(225.43, 100%, 58.82%);
+
+  --color-primary2: hsl(231.11, 34.18%, 30.98%);
+
+  --color-secondary: hsl(351.48, 98.78%, 67.84%);
+  --color-accent: hsl(39.43, 99.19%, 51.57%);
+}
+
+[data-theme="dark"] {
+  --color-background: hsl(231.11, 34.18%, 30.98%);
+  --color-background-darker: hsl(204, 42.86%, 6.86%);
+  --color-primary: hsl(225.43, 100%, 58.82%);
+
+  --color-primary2: hsl(204, 42.86%, 93.14%);
+
+  --color-secondary: hsl(351.48, 98.78%, 67.84%);
+  --color-accent: hsl(39.43, 99.19%, 51.57%);
+}
+body {
+  @apply bg-background-darker text-primary2;
+}

@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "esnext", // ← was "nodenext"
+        "moduleResolution": "bundler", // ← add this for Vite
+        "target": "esnext",
+        "sourceMap": true,
+        "declaration": true,
+        "declarationMap": true,
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true,
+        "strict": true,
+        "jsx": "preserve", // ← was "react-jsx", Vue needs "preserve"
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
+        "noUncheckedSideEffectImports": true,
+        "moduleDetection": "force",
+        "skipLibCheck": true
+    }
+}
