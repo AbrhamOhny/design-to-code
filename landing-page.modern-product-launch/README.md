@@ -4,7 +4,7 @@
 
 https://www.figma.com/community/file/1487309170684591074/modern-product-launch
 
-Bellow is default vue-project init
+Below is default vue-project init
 
 ## Recommended IDE Setup
 
