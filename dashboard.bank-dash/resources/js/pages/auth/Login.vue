@@ -60,7 +60,7 @@ function handleChange(_model: _inModel) {
 <template>
     <div class="flex flex-col w-full h-full justify-center items-center">
         <div
-            class="flex flex-col h-fit gap-10 p-5 rounded-xl bg-background-lighter w-full md:w-1/3"
+            class="flex flex-col h-fit gap-10 p-5 md:rounded-xl bg-background-lighter w-full sm:w-full md:w-1/2 lg:w-2/4"
         >
             <div class="text-xl select-none font-semibold">Bankdash</div>
             <form @submit.prevent="handleLogin" class="flex flex-col">
