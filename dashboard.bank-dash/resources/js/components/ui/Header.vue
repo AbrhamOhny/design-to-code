@@ -9,7 +9,7 @@ onMounted(() => {
 </script>
 <template>
     <header
-        class="absolute z-30 top-0 px-5 py-3 flex flex-row items-center justify-between bg-background-lighter"
+        class="fixed z-30 top-0 px-5 py-3 flex flex-row items-center justify-between bg-background-lighter"
     >
         <button
             id="nav-toggle"

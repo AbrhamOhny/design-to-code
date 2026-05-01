@@ -49,7 +49,7 @@ onUnmounted(() => {
     <nav class="flex flex-row absolute w-full h-full overflow-y-auto">
         <div
             id="navbar"
-            class="z-50 flex flex-col fixed overflow-clip h-dvh bg-background-lighter overflow-y-auto"
+            class="z-50 flex flex-col fixed overflow-clip h-dvh bg-background-lighter justify-between overflow-y-auto"
             :style="navStyle"
         >
             <div class="py-5 px-3 mb-3 w-full flex justify-center text-xl font-semibold">
@@ -59,7 +59,7 @@ onUnmounted(() => {
         </div>
         <div
             id="bg-nav"
-            class="h-full w-full bg-background-lighter/20"
+            class="fixed h-full w-full bg-background-lighter/20"
             :class="
                 viewMode === 'mobile' && isNavOpened
                     ? 'opacity-100 backdrop-blur-sm z-40'

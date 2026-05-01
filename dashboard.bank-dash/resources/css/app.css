@@ -16,6 +16,8 @@
     --color-warning: var(--color-amber-900);
     --color-success: var(--color-lime-800);
 
+    --color-onGradient: hsl(216, 33.33%, 97.06%);
+
     --color-customgradient-start: hsl(241.1, 82%, 60.78%);
     --color-customgradient-end: hsl(241.01, 95.2%, 49.02%);
 }
