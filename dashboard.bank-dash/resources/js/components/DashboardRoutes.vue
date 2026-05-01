@@ -61,12 +61,12 @@ function handleVisit(url: string) {
 </script>
 <template>
     <button
-        class="no-decoration relative pl-10 py-4 flex flex-row gap-5 items-center"
+        class="no-decoration cursor-pointer relative pl-10 py-4 flex flex-row gap-5 items-center"
         v-for="route in routes"
         :class="
             currentPath === getPath(route.link!)
                 ? 'text-primary font-semibold'
-                : 'hover:text-primary'
+                : 'hover:bg-primary/20'
         "
         @click="handleVisit(route.link!)"
     >

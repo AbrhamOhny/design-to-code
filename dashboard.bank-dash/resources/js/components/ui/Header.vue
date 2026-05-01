@@ -9,11 +9,12 @@ onMounted(() => {
 </script>
 <template>
     <header
-        class="absolute z-40 top-0 px-5 py-3 flex flex-row items-center justify-between bg-background-lighter"
+        class="absolute z-30 top-0 px-5 py-3 flex flex-row items-center justify-between bg-background-lighter"
     >
         <button
+            id="nav-toggle"
             @click="emit('toggleNav')"
-            class="aspect-square p-2 rounded-full hover:bg-background-darker"
+            class="no-decoration aspect-square p-2 z-50 rounded-full hover:bg-background-darker"
             v-if="viewMode === 'mobile'"
         >
             <Icon icon="ic:round-menu" width="24" height="24" />

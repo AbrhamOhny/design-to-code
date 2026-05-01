@@ -39,6 +39,7 @@
 @media (width>=48rem) {
     :root {
         --navwidth: calc(3 / 10 * 100%);
+        --navleft: 0;
     }
     header {
         width: calc(100% - var(--navwidth));
@@ -53,11 +54,12 @@
 @media (width > 64rem) {
     :root {
         --navwidth: calc(2 / 10 * 100%);
+        --navleft: 0;
     }
 }
 @media (width < 48rem) {
     :root {
-        --navwidth: 0px;
+        --navwidth: calc(2 / 3 * 100%);
     }
     article {
         width: 100%;
@@ -77,6 +79,7 @@ article {
 }
 #navbar {
     width: var(--navwidth);
+    transition: left 100ms ease-in-out;
 }
 body {
     @apply bg-background-darker text-primary2;
@@ -86,6 +89,7 @@ label {
 }
 button,
 input,
+#bg-nav,
 .msg {
     transition-property: opacity, color, opacity, outline, border;
     transition-duration: 250ms, 100ms, 100ms, 50ms, 50ms;
