@@ -16,6 +16,9 @@
     --color-warning: var(--color-amber-900);
     --color-success: var(--color-lime-800);
 
+    --color-income: var(--color-lime-600);
+    --color-outcome: var(--color-rose-800);
+
     --color-onGradient: hsl(216, 33.33%, 97.06%);
 
     --color-customgradient-start: hsl(241.1, 82%, 60.78%);
@@ -36,6 +39,9 @@
 
     --color-error: var(--color-rose-500);
     --color-warning: var(--color-amber-500);
+
+    --color-income: var(--color-lime-400);
+    --color-outcome: var(--color-rose-400);
 }
 :root {
     --navwidth: initial;
