@@ -29,7 +29,7 @@ const slicedUID = computed(() => {
 </script>
 <template>
     <div
-        class="flex flex-col rounded-4xl overflow-clip aspect-4/3 min-w-3/5 flex-1"
+        class="flex flex-col rounded-2xl overflow-clip min-w-[350px] min-h-[235px] flex-1"
         :class="!isMain ? 'border' : ''"
     >
         <div
