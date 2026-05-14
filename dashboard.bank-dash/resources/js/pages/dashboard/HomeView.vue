@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import CreditCard from "../../components/CreditCard.vue";
 import MiniTransactions from "../../components/MiniTransactions.vue";
+import WeeklyTransactions from "../../components/WeeklyTransactions.vue";
 const name = "Test";
 const balance = 1500;
 const valid = new Date("2030-12");
@@ -71,7 +72,14 @@ const latestTransactions = [
         </div>
         <!-- Section 2: Weekly Activity & Expense Statistics -->
         <div class="flex flex-col lg:flex-row w-full gap-5 overflow-x-auto">
-            <div class="flex flex-col bg-background-lighter"></div>
+            <div class="flex flex-col flex-2 gap-5">
+                <h1 class="text-lg font-semibold">Weekly Transactions</h1>
+                <WeeklyTransactions
+                    class="p-5 rounded-2xl bg-background-lighter"
+                    :income="[1, 2, 1, 2, 1, 2, 1]"
+                    :expense="[2, 1, 2, 1, 2, 1, 2]"
+                />
+            </div>
         </div>
     </div>
 </template>
