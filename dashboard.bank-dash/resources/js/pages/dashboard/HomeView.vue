@@ -4,6 +4,7 @@ import MiniTransactions from "../../components/MiniTransactions.vue";
 import WeeklyTransactions from "../../components/WeeklyTransactions.vue";
 import ExpensePie from "../../components/ExpensePie.vue";
 import QuickTransfer from "../../components/QuickTransfer.vue";
+import BalanceHistory from "../../components/BalanceHistory.vue";
 const name = "Test";
 const balance = 1500;
 const valid = new Date("2030-12");
@@ -97,6 +98,10 @@ const latestTransactions = [
             <div class="flex flex-col gap-5 flex-1/3 max-h-1/2 overflow-clip">
                 <h1>Quick Transfer</h1>
                 <QuickTransfer class="card" />
+            </div>
+            <div class="flex flex-col gap-5 flex-5/8 max-h-1/2 overflow-clip">
+                <h1>Balance History</h1>
+                <BalanceHistory class="card" :data="[150, 350, 250, 450, 300, 600]" />
             </div>
         </section>
     </div>
