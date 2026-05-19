@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useTheme } from "../scripts";
+const { theme } = useTheme();
 const relativeIdentity = [
     {
         name: "Hitori Gotoh",
@@ -20,11 +22,23 @@ const relativeIdentity = [
 <template>
     <div class="flex flex-col gap-2">
         <div class="flex flex-row justify-between items-center">
-            <div class="flex flex-row gap-5 justify-between items-center">
+            <div class="flex flex-row gap-2 justify-between items-center">
                 <div class="profile-container" v-for="relative in relativeIdentity">
                     <img class="profile-image" :src="relative.img" />
-                    <span>{{ relative.name }}</span>
-                    <span>{{ relative.title }}</span>
+                    <div class="flex flex-col items-center font-semibold">
+                        <span
+                            :class="
+                                theme === 'dark' ? 'text-primary2-lighter' : 'text-primary2-darker'
+                            "
+                            >{{ relative.name }}</span
+                        >
+                        <span
+                            :class="
+                                theme === 'dark' ? 'text-primary2-darker' : 'text-primary2-lighter'
+                            "
+                            >{{ relative.title }}</span
+                        >
+                    </div>
                 </div>
             </div>
             <div
@@ -37,7 +51,7 @@ const relativeIdentity = [
             <span>Write Amount</span>
             <div class="input-container">
                 <input class="no-decoration" type="text" placeholder="525.50" />
-                <button class="no-decoration">
+                <button class="no-decoration" :class="{ 'text-background': theme === 'light' }">
                     <span>Send</span>
                     <Icon icon="system-uicons:paper-plane" width="24" height="24" />
                 </button>
@@ -48,7 +62,10 @@ const relativeIdentity = [
 <style lang="css" scoped>
 @reference '../../css/app.css';
 .profile-container {
-    @apply flex flex-col gap-2 items-center;
+    @apply flex flex-col gap-1 p-2 min-w-32 rounded-xl items-center;
+}
+.profile-container:hover {
+    @apply bg-background-darker;
 }
 .profile-image {
     @apply object-top object-cover aspect-square rounded-full overflow-clip max-w-17.5;
