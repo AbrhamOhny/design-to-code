@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
-import { useTheme, resolveCssColor } from "../scripts";
+import { useTheme, resolveCssColor, sum } from "../scripts";
 import { PolarArea } from "vue-chartjs";
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, RadialLinearScale } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
@@ -17,7 +17,9 @@ const chartLabels = ["Investment", "Entertainment", "Bill", "Other"];
 
 const textColor = computed(() => {
     theme.value;
-    return resolveCssColor("--color-primary2-lighter");
+    return resolveCssColor(
+        theme.value == "dark" ? "--color-primary2-lighter" : "--color-background-darker",
+    );
 });
 
 const backgroundColor = computed(() => {
@@ -34,6 +36,7 @@ const chartData = computed(() => {
                 data: [investment, entertainment, bill, other],
                 borderWidth: 10,
                 borderColor: backgroundColor.value,
+                hoverBorderColor: backgroundColor.value,
                 backgroundColor: ["#FA00FF", "#1814F3", "#FC7900", "#343C6A"],
             },
         ],
@@ -42,18 +45,21 @@ const chartData = computed(() => {
 const chartOptions = computed(() => {
     theme.value;
     return {
-        responsive: false,
-        maintainAspectRatio: true,
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
             r: {
                 ticks: {
+                    display: false,
+                },
+                grid: {
                     display: false,
                 },
             },
         },
         plugins: {
             legend: {
-                display: false,
+                display: true,
             },
             datalabels: {
                 display: true,
@@ -67,7 +73,19 @@ const chartOptions = computed(() => {
                 offset: 20,
                 clamp: true,
                 formatter: (value: number, context: any) => {
-                    return `${context.chart.data.labels[context.dataIndex]}\n${value}%`;
+                    const _sum = sum(context.dataset.data);
+                    return `${(value / _sum) * 100}%`;
+                },
+            },
+            tooltip: {
+                callbacks: {
+                    labelColor: function (context: any) {
+                        return {
+                            borderColor: "transparent",
+                            backgroundColor: context.dataset.backgroundColor[context.dataIndex],
+                            borderWidth: 0,
+                        };
+                    },
                 },
             },
         },
@@ -75,5 +93,7 @@ const chartOptions = computed(() => {
 });
 </script>
 <template>
-    <PolarArea class="h-[322px]" :data="chartData" :options="chartOptions" />
+    <div class="w-full aspect-square max-h-92">
+        <PolarArea :data="chartData" :options="chartOptions" />
+    </div>
 </template>

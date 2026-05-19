@@ -32,7 +32,7 @@ const latestTransactions = [
     <div class="flex flex-col gap-5">
         <!-- Section 1: Cards & Recent transaction -->
         <div class="flex flex-col lg:flex-row w-full gap-5 overflow-x-auto">
-            <div class="flex flex-col w-5/8 gap-5">
+            <div class="flex flex-col flex-5/8 gap-5">
                 <div class="flex flex-row items-center justify-between text-lg font-semibold">
                     <h1 class="text-lg font-semibold">My Cards</h1>
                     <span>See All</span>
@@ -53,7 +53,7 @@ const latestTransactions = [
                     />
                 </div>
             </div>
-            <div class="flex flex-col w-1/3 gap-5 shrink-0">
+            <div class="flex flex-col flex-1/3 gap-5 shrink-0">
                 <div class="flex flex-row items-center justify-between text-lg font-semibold">
                     <h1>Recent Transaction</h1>
                 </div>
@@ -72,7 +72,7 @@ const latestTransactions = [
         </div>
         <!-- Section 2: Weekly Activity & Expense Statistics -->
         <div class="flex flex-col lg:flex-row w-full gap-5 overflow-x-auto">
-            <div class="flex flex-col gap-5 w-5/8 overflow-clip">
+            <div class="flex flex-col gap-5 flex-5/8 overflow-clip">
                 <h1 class="text-lg font-semibold">Weekly Transactions</h1>
                 <WeeklyTransactions
                     class="p-5 rounded-2xl bg-background-lighter"
@@ -80,7 +80,7 @@ const latestTransactions = [
                     :expense="[2, 1, 2, 1, 2, 1, 2]"
                 />
             </div>
-            <div class="flex flex-col gap-5 w-1/3 h-full overflow-clip">
+            <div class="flex flex-col gap-5 flex-1/3 max-h-1/2 overflow-clip">
                 <h1 class="text-lg font-semibold">Expense Statistics</h1>
                 <ExpensePie
                     class="p-5 rounded-2xl bg-background-lighter"

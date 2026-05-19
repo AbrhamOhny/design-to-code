@@ -13,6 +13,8 @@ export function getWeekdays(locale = navigator.language) {
     });
 }
 
+export const sum = (arr: number[]) => arr.reduce((a, b) => a + b, 0);
+
 export function resolveCssColor(variable: string): string {
     const el = document.createElement("div");
     el.style.color = `var(${variable})`;
