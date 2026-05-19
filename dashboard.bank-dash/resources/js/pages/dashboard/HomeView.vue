@@ -3,6 +3,7 @@ import CreditCard from "../../components/CreditCard.vue";
 import MiniTransactions from "../../components/MiniTransactions.vue";
 import WeeklyTransactions from "../../components/WeeklyTransactions.vue";
 import ExpensePie from "../../components/ExpensePie.vue";
+import QuickTransfer from "../../components/QuickTransfer.vue";
 const name = "Test";
 const balance = 1500;
 const valid = new Date("2030-12");
@@ -29,12 +30,12 @@ const latestTransactions = [
 ];
 </script>
 <template>
-    <div class="flex flex-col gap-5">
+    <div class="section-container">
         <!-- Section 1: Cards & Recent transaction -->
-        <div class="flex flex-col lg:flex-row w-full gap-5 overflow-x-auto">
+        <section>
             <div class="flex flex-col flex-5/8 gap-5">
                 <div class="flex flex-row items-center justify-between text-lg font-semibold">
-                    <h1 class="text-lg font-semibold">My Cards</h1>
+                    <h1>My Cards</h1>
                     <span>See All</span>
                 </div>
                 <div class="flex flex-row gap-5 overflow-x-auto">
@@ -58,7 +59,7 @@ const latestTransactions = [
                     <h1>Recent Transaction</h1>
                 </div>
 
-                <div class="flex flex-col gap-5 p-6 rounded-2xl bg-background-lighter shrink-0">
+                <div class="card flex flex-col gap-5 p-6! shrink-0">
                     <MiniTransactions
                         v-for="(item, index) in latestTransactions"
                         :key="index"
@@ -69,27 +70,49 @@ const latestTransactions = [
                     />
                 </div>
             </div>
-        </div>
+        </section>
         <!-- Section 2: Weekly Activity & Expense Statistics -->
-        <div class="flex flex-col lg:flex-row w-full gap-5 overflow-x-auto">
-            <div class="flex flex-col gap-5 flex-5/8 overflow-clip">
-                <h1 class="text-lg font-semibold">Weekly Transactions</h1>
+        <section>
+            <div class="flex flex-col gap-5 flex-5/8">
+                <h1>Weekly Transactions</h1>
                 <WeeklyTransactions
-                    class="p-5 rounded-2xl bg-background-lighter"
+                    class="card"
                     :income="[1, 2, 1, 2, 1, 2, 1]"
                     :expense="[2, 1, 2, 1, 2, 1, 2]"
                 />
             </div>
-            <div class="flex flex-col gap-5 flex-1/3 max-h-1/2 overflow-clip">
-                <h1 class="text-lg font-semibold">Expense Statistics</h1>
+            <div class="flex flex-col gap-5 flex-1/3 max-h-1/2">
+                <h1>Expense Statistics</h1>
                 <ExpensePie
-                    class="p-5 rounded-2xl bg-background-lighter"
+                    class="card"
                     :investment="20"
                     :entertainment="30"
                     :bill="15"
                     :other="35"
                 />
             </div>
-        </div>
+        </section>
+        <!-- Section 3: Quick Transfer & Balance History -->
+        <section>
+            <div class="flex flex-col gap-5 flex-1/3 max-h-1/2 overflow-clip">
+                <h1>Quick Transfer</h1>
+                <QuickTransfer class="card" />
+            </div>
+        </section>
     </div>
 </template>
+<style lang="css" scoped>
+@reference '../../../css/app.css';
+section {
+    @apply flex flex-col lg:flex-row w-full gap-5 overflow-x-auto;
+}
+.section-container {
+    @apply flex flex-col gap-5;
+}
+h1 {
+    @apply text-lg font-semibold;
+}
+.card {
+    @apply p-5 rounded-2xl bg-background-lighter;
+}
+</style>
