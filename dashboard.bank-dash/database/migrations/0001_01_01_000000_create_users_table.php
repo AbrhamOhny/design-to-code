@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -34,6 +33,35 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+        });
+
+        Schema::create('users_information', function (Blueprint $table) {
+            $table->foreignId('user_id')->primary()->constrained('users')->cascadeOnDelete();
+            $table->string('image')->nullable();
+            $table->string('fullname');
+            $table->date('date_of_birth')->nullable();
+            $table->string('present_address');
+            $table->string('permanent_address');
+            $table->string('city');
+            $table->string('postal_code');
+            $table->string('country');
+            $table->timestamps();
+        });
+
+        Schema::create('user_preference', function (Blueprint $table) {
+            $table->foreignId('user_id')->primary()->constrained('users')->cascadeOnDelete();
+            $table->string('currency')->default('USD');
+            $table->string('time_zone')->default('UTC');
+            $table->boolean('notification_digital_currency')->default(false);
+            $table->boolean('notification_merchant_order')->default(false);
+            $table->boolean('notification_recommendation')->default(false);
+            $table->timestamps();
+        });
+
+        Schema::create('user_security', function (Blueprint $table) {
+            $table->foreignId('user_id')->primary()->constrained('users')->cascadeOnDelete();
+            $table->boolean('two_factor_auth')->default(false);
+            $table->timestamps();
         });
     }
 
