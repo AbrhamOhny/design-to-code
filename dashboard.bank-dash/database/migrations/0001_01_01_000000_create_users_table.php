@@ -48,7 +48,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('user_preference', function (Blueprint $table) {
+        Schema::create('users_preference', function (Blueprint $table) {
             $table->foreignId('user_id')->primary()->constrained('users')->cascadeOnDelete();
             $table->string('currency')->default('USD');
             $table->string('time_zone')->default('UTC');
@@ -58,7 +58,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('user_security', function (Blueprint $table) {
+        Schema::create('users_security', function (Blueprint $table) {
             $table->foreignId('user_id')->primary()->constrained('users')->cascadeOnDelete();
             $table->boolean('two_factor_auth')->default(false);
             $table->timestamps();
@@ -70,8 +70,16 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
+        $tables = [
+            'users',
+            'password_reset_tokens',
+            'sessions',
+            'users_information',
+            'users_preference',
+            'users_security'
+        ];
+        foreach ($tables as $table) {
+            Schema::dropIfExists($table);
+        };
     }
 };
