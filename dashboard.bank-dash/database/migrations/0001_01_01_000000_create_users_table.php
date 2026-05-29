@@ -76,7 +76,8 @@ return new class extends Migration
             'sessions',
             'users_information',
             'users_preference',
-            'users_security'
+            'users_security',
+            'users_investment',
         ];
         foreach ($tables as $table) {
             Schema::dropIfExists($table);
