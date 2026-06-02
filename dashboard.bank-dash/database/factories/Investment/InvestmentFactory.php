@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories\Bank;
+namespace Database\Factories\Investment;
 
-use App\Models\Bank\InvestmentParty;
+use App\Models\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<InvestmentParty>
+ * @extends Factory<Model>
  */
-class InvestmentPartyFactory extends Factory
+class InvestmentFactory extends Factory
 {
     /**
      * Define the model's default state.

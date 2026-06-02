@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable(['user_id', 'party_id', 'amount', 'date_invested'])]
 class UserInvestment extends Model
 {
+    protected $table = "users_investment";
     protected function casts(): array
     {
         return [
-            'date_invested' => 'datetime'
+            'date_invested' => 'datetime',
         ];
     }
 

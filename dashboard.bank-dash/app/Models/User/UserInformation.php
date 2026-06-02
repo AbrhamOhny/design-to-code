@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     'permanent_address',
     'city',
     'postal_code',
-    'country'
+    'country',
 ])]
 class UserInformation extends Model
 {

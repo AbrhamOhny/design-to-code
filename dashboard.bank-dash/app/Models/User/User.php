@@ -3,7 +3,10 @@
 namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\User\UserFactory;
+
+use App\Models\Card\UserCard;
+use App\Models\Investment\UserInvestment;
+use App\Models\Loan\UsersLoan;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +20,8 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<User\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * Get the attributes that should be cast.
@@ -50,5 +54,15 @@ class User extends Authenticatable
     public function investment(): HasMany
     {
         return $this->hasMany(UserInvestment::class);
+    }
+
+    public function card(): HasMany
+    {
+        return $this->hasMany(UserCard::class);
+    }
+
+    public function loan(): HasMany
+    {
+        return $this->hasMany(UsersLoan::class);
     }
 }
