@@ -5,12 +5,16 @@ namespace App\Models\Card;
 use App\Models\Bank\Bank;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable(["user_id", "bank_id", "type_id", "name_on_card", "balance", "valid_thru"])]
 class UserCard extends Model
 {
+    /** @use HasFactory<UserCard> */
+    use HasFactory;
+
     protected $table = 'users_card';
 
     protected function casts(): array

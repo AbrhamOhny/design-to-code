@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 ])]
 class UserInformation extends Model
 {
+    /** @use HasFactory<UserInformation> */
+    use HasFactory;
+
     protected $table = 'users_information';
     protected $primaryKey = 'user_id';
     public $incrementing = false;

@@ -13,6 +13,8 @@ class Bank extends Model
 {
     /** @use HasFactory<Bank\BankFactory> */
     use HasFactory;
+
+    public $timestamps = false;
     protected $table = 'registered_banks';
 
     public function card(): HasMany

@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 #[Fillable([
@@ -10,10 +11,13 @@ use Illuminate\Database\Eloquent\Model;
     'time_zone',
     'notification_digital_currency',
     'notification_merchant_order',
-    'notification_recommendation'
+    'notification_recommendation',
 ])]
 class UserPreference extends Model
 {
+    /** @use HasFactory<UserPreference> */
+    use HasFactory;
+
     protected $table = 'users_preference';
     protected $primaryKey = 'user_id';
     public $incrementing = false;

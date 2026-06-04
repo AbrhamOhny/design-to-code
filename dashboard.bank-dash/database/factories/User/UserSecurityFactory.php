@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories\Investment;
+namespace Database\Factories\User;
 
-use App\Models\Model;
+use App\Models\User\UserSecurity;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Model>
+ * @extends Factory<UserSecurity>
  */
-class InvestmentFactory extends Factory
+class UserSecurityFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class InvestmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'two_factor_auth' => false,
         ];
     }
 }

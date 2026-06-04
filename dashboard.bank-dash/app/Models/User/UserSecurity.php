@@ -2,14 +2,18 @@
 
 namespace App\Models\User;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 #[Fillable([
     'user_id',
-    'two_factor_auth'
+    'two_factor_auth',
 ])]
 class UserSecurity extends Model
 {
+    /** @use HasFactory<UserSecurity> */
+    use HasFactory;
+
     protected $table = 'users_security';
     protected $primaryKey = 'user_id';
     public $incrementing = false;
