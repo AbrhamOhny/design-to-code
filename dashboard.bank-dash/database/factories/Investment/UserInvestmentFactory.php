@@ -4,6 +4,7 @@ namespace Database\Factories\Investment;
 
 use App\Models\Investment\InvestmentParty;
 use App\Models\Investment\UserInvestment;
+use App\Models\Transaction\TransactionLog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,5 +26,16 @@ class UserInvestmentFactory extends Factory
             'party_id' => InvestmentParty::query()->inRandomOrder()->value('id'),
             'amount' => fake()->numberBetween(200, $max),
         ];
+    }
+    public function configure(): static
+    {
+        return $this->afterCreating(function (UserInvestment $investment) {
+            TransactionLog::create([
+                'sender_id' => $investment->user->receiver_id,
+                'receiver_id' => $investment->party_id,
+                'amount' => $investment->amount,
+                'description' => 'Invested to ' . $investment->party->name,
+            ]);
+        });
     }
 }

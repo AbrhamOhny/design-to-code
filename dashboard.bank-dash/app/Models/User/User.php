@@ -6,10 +6,12 @@ namespace App\Models\User;
 
 use App\Models\Card\UserCard;
 use App\Models\Investment\UserInvestment;
-use App\Models\Loan\UsersLoan;
+use App\Models\Loan\UserLoan;
+use App\Models\Transaction\TransactionHandler;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,7 +21,7 @@ use Illuminate\Notifications\Notifiable;
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
-    /** @use HasFactory<User\UserFactory> */
+    /** @use HasFactory<User> */
     use HasFactory;
     use Notifiable;
 
@@ -63,6 +65,11 @@ class User extends Authenticatable
 
     public function loan(): HasMany
     {
-        return $this->hasMany(UsersLoan::class);
+        return $this->hasMany(UserLoan::class);
+    }
+
+    public function receiver(): BelongsTo
+    {
+        return $this->belongsTo(TransactionHandler::class, 'receiver_id');
     }
 }

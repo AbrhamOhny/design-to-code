@@ -1,15 +1,15 @@
 <?php
 
-namespace Database\Factories\Bank;
+namespace Database\Factories\Investment;
 
-use App\Models\Bank\Bank;
+use App\Models\Investment\InvestmentParty;
 use App\Models\Transaction\TransactionHandler;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Bank>
+ * @extends Factory<InvestmentParty>
  */
-class BankFactory extends Factory
+class InvestmentPartyFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,8 +20,8 @@ class BankFactory extends Factory
     {
         $receiver = TransactionHandler::create();
         return [
-            'name' => fake()->company(),
             'receiver_id' => $receiver->id,
+            'name' => fake()->company(),
         ];
     }
 }

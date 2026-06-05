@@ -2,29 +2,33 @@
 
 namespace App\Models\Loan;
 
+use App\Models\Bank\Bank;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(["type_id", "user_id", "is_active", "amount", "paid", "installment", "deadline"])]
-class UsersLoan extends Model
+#[Fillable(["user_id", "is_active", "amount", "paid", "installment", "month_duration"])]
+class UserLoan extends Model
 {
+    /** @use HasFactory<UserLoan> */
+    use HasFactory;
+
+    protected $table = "users_loan";
     protected function casts(): array
     {
         return [
             "is_active" => "boolean",
-            "deadline" => "datetime",
         ];
     }
 
     public function user(): BelongsTo
     {
-        $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function type(): BelongsTo
+    public function bank(): BelongsTo
     {
-        $this->belongsTo(LoanType::class, 'type_id');
+        return $this->belongsTo(Bank::class, 'bank_id');
     }
 }

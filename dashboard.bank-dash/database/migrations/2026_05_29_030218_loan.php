@@ -10,21 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('loans_type', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('interest_rate');
-        });
-
         Schema::create('users_loan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('type_id')->constrained('loans_type')->cascadeOnDelete();
+            $table->foreignId('bank_id')->constrained('registered_banks')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->boolean('is_active');
             $table->integer('amount');
-            $table->integer('paid');
-            $table->integer('installment');
-            $table->date('deadline');
+            $table->double('paid');
+            $table->double('installment');
+            $table->integer('month_duration');
             $table->timestamps();
         });
 
@@ -42,7 +36,6 @@ return new class extends Migration {
     public function down(): void
     {
         $tables = [
-            'loans_type',
             'users_loan',
             'loans_payment_log',
         ];

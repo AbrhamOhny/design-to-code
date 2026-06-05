@@ -19,6 +19,7 @@ class UserInformationFactory extends Factory
     {
         $present_address = fake()->address();
         return [
+            'title' => fake()->jobTitle(),
             'image' => null,
             'fullname' => fake()->name(),
             'date_of_birth' => fake()->dateTimeBetween('-60 years', '-18 years'),

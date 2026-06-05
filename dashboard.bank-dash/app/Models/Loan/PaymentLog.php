@@ -12,6 +12,6 @@ class PaymentLog extends Model
     protected $table = "loans_payment_log";
     public function loan(): BelongsTo
     {
-        $this->belongsTo(UsersLoan::class, 'loan_id');
+        return $this->belongsTo(UsersLoan::class, 'loan_id');
     }
 }

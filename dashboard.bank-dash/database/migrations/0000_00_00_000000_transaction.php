@@ -10,16 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('investment_party', function (Blueprint $table) {
+        Schema::create('transaction_handler', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('receiver_id')->unique()->constrained('transaction_handler')->cascadeOnDelete();
-            $table->string('name');
         });
-        Schema::create('users_investment', function (Blueprint $table) {
+        Schema::create('transaction_log', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('party_id')->constrained('investment_party')->cascadeOnDelete();
-            $table->integer('amount');
+            $table->foreignId('sender_id')->constrained('transaction_handler')->cascadeOnDelete();
+            $table->foreignId('receiver_id')->constrained('transaction_handler')->cascadeOnDelete();
+            $table->double('amount');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -30,8 +29,8 @@ return new class extends Migration {
     public function down(): void
     {
         $tables = [
-            'investment_party',
-            'users_investment',
+            'transaction_handler',
+            'transaction_log',
         ];
         foreach ($tables as $table) {
             Schema::dropIfExists($table);

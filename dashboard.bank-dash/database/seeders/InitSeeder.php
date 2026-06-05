@@ -18,7 +18,7 @@ class InitSeeder extends Seeder
             'credit', 'visa', 'mastercard',
         ];
         $banks = [
-            'BCA', 'BRI', 'Mandiri', 'Paypal',
+            'Bankdash', 'BCA', 'BRI', 'Mandiri', 'Paypal',
         ];
         $investment_parties = [
             'PLN', 'GOTO', 'SPBU',
@@ -34,7 +34,7 @@ class InitSeeder extends Seeder
             ]);
         }
         foreach ($investment_parties as $party) {
-            InvestmentParty::create([
+            InvestmentParty::factory()->create([
                 'name' => $party,
             ]);
         }
