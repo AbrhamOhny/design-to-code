@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { usePage } from "@inertiajs/vue3";
 import CreditCard from "../../components/CreditCard.vue";
 import MiniTransactions from "../../components/MiniTransactions.vue";
 import WeeklyTransactions from "../../components/WeeklyTransactions.vue";
@@ -29,34 +30,40 @@ const latestTransactions = [
         receiver: "self",
     },
 ];
+const page = usePage();
+const cardLen = page.props.user.card.length;
 </script>
 <template>
     <div class="section-container">
         <!-- Section 1: Cards & Recent transaction -->
         <section>
             <div class="flex flex-col flex-5/8 gap-5">
-                <div class="flex flex-row items-center justify-between text-lg font-semibold">
+                <div
+                    class="flex flex-row items-center justify-between text-lg font-semibold"
+                >
                     <h1>My Cards</h1>
                     <span>See All</span>
                 </div>
                 <div class="flex flex-row gap-5 overflow-x-auto">
                     <CreditCard
-                        :name="name"
-                        :balance="balance"
-                        :valid="valid"
-                        :uniqueID="uniqueID"
+                        v-for="(card, index) in page.props.user.card"
+                        :name="card.name_on_card"
+                        :balance="card.balance"
+                        :valid="new Date(card.valid_thru)"
+                        :uniqueID="card.unique_id"
+                        :is-main="index <= 0"
                     />
                     <CreditCard
-                        :name="name"
-                        :balance="balance"
-                        :valid="valid"
-                        :uniqueID="uniqueID"
-                        :isMain="false"
+                        v-if="cardLen == 1"
+                        :is-blank="true"
+                        :is-main="false"
                     />
                 </div>
             </div>
             <div class="flex flex-col flex-1/3 gap-5 shrink-0">
-                <div class="flex flex-row items-center justify-between text-lg font-semibold">
+                <div
+                    class="flex flex-row items-center justify-between text-lg font-semibold"
+                >
                     <h1>Recent Transaction</h1>
                 </div>
 
@@ -101,7 +108,10 @@ const latestTransactions = [
             </div>
             <div class="flex flex-col gap-5 flex-5/8 max-h-1/2 overflow-clip">
                 <h1>Balance History</h1>
-                <BalanceHistory class="card" :data="[150, 350, 250, 450, 300, 600]" />
+                <BalanceHistory
+                    class="card"
+                    :data="[150, 350, 250, 450, 300, 600]"
+                />
             </div>
         </section>
     </div>

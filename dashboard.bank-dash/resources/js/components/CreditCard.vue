@@ -2,12 +2,13 @@
 import { computed } from "vue";
 
 const {
-    balance,
-    name,
-    valid,
-    uniqueID,
+    balance = 0,
+    name = "name",
+    valid = new Date(),
+    uniqueID = 0,
     currency = "$",
     isMain = true,
+    isBlank = false,
 } = defineProps<{
     balance: number;
     name: string;
@@ -15,6 +16,7 @@ const {
     uniqueID: number;
     currency?: string;
     isMain?: boolean;
+    isBlank?: boolean;
 }>();
 
 const slicedUID = computed(() => {
@@ -30,18 +32,42 @@ const slicedUID = computed(() => {
 <template>
     <div
         class="flex flex-col rounded-2xl overflow-clip min-w-[350px] min-h-[235px] flex-1"
-        :class="!isMain ? 'border-2' : ''"
+        :class="
+            isMain
+                ? ''
+                : isBlank
+                  ? 'border-2 border-dashed border-primary2-darker'
+                  : 'border-2'
+        "
     >
         <div
+            v-if="isBlank"
+            class="flex flex-col flex-1 gap-3 items-center justify-center p-3 text-primary2-darker"
+        >
+            <Icon icon="mdi:add-bold" width="32" height="32" />
+            <span class="font-semibold">Add Card</span>
+        </div>
+        <div
+            v-if="!isBlank"
             class="flex flex-col gap-5 p-7 flex-1"
-            :class="isMain ? 'custom-gradient text-onGradient' : 'bg-background-lighter'"
+            :class="
+                isMain
+                    ? 'custom-gradient text-onGradient'
+                    : 'bg-background-lighter'
+            "
         >
             <div class="flex flex-row justify-between items-end">
                 <div class="flex flex-col gap-1">
                     <span class="text-xs font-light">Balance</span>
-                    <span class="text-md font-semibold">{{ `${currency}${balance}` }}</span>
+                    <span class="text-md font-semibold">{{
+                        `${currency}${balance}`
+                    }}</span>
                 </div>
-                <Icon icon="mdi:integrated-circuit-chip" width="32" height="32" />
+                <Icon
+                    icon="mdi:integrated-circuit-chip"
+                    width="32"
+                    height="32"
+                />
             </div>
             <div class="flex flex-row flex-1 items-center">
                 <div class="flex flex-col flex-1 gap-1">
@@ -62,11 +88,18 @@ const slicedUID = computed(() => {
         </div>
 
         <div
+            v-if="!isBlank"
             class="flex flex-col gap-5 px-7 py-5"
-            :class="isMain ? 'custom-gradient text-onGradient' : 'bg-background-lighter border-t'"
+            :class="
+                isMain
+                    ? 'custom-gradient text-onGradient'
+                    : 'bg-background-lighter border-t'
+            "
         >
             <div class="flex flex-row justify-between">
-                <span class="text-lg font-semibold">{{ slicedUID!.join(" ") }}</span>
+                <span class="text-lg font-semibold">{{
+                    slicedUID!.join(" ")
+                }}</span>
                 <Icon icon="grommet-icons:mastercard" width="32" />
             </div>
         </div>

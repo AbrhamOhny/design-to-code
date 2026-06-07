@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -37,10 +38,19 @@ class HandleInertiaRequests extends Middleware
     {
         $to_return = [
             'routeName' => $request->route()?->getName(),
-            'currentUrl' => url()->current()
+            'currentUrl' => url()->current(),
         ];
         if (auth()->check()) {
             $to_return = array_merge($to_return, [
+                'user' => Auth::user()?->load([
+                    'information',
+                    'preference',
+                    'security',
+                    'investment',
+                    'card',
+                    'loan',
+                    'receiver',
+                ]),
                 'dashboardRoutes' => [
                     'home' => route('overview'),
                     'transactions' => route('transactions'),
@@ -51,8 +61,8 @@ class HandleInertiaRequests extends Middleware
                     'services' => route('services'),
                     'privileges' => route('privileges'),
                     'settings' => route('settings'),
-                    'deauthenticate' => route('deauthenticate')
-                ]
+                    'deauthenticate' => route('deauthenticate'),
+                ],
             ]);
         }
         return array_merge(parent::share($request), $to_return);

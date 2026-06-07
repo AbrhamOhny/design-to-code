@@ -25,9 +25,9 @@ class UserCardFactory extends Factory
         return [
             'bank_id' => Bank::query()->inRandomOrder()->value('id'),
             'type_id' => CardType::query()->inRandomOrder()->value('id'),
-            'name_on_card' => fake()->name(),
+            'unique_id' => fake()->creditCardNumber(),
             'balance' => fake()->numberBetween(0, $max),
-            'valid_thru' => fake()->dateTimeBetween('now', '+5 years')->format('m/y'),
+            'valid_thru' => fake()->dateTimeBetween('now', '+5 years')->format('d-m-Y'),
         ];
     }
 }
