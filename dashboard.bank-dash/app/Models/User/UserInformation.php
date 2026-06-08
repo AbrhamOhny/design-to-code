@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 #[Fillable([
     'user_id',
@@ -25,8 +26,16 @@ class UserInformation extends Model
     use HasFactory;
 
     protected $table = 'users_information';
+    protected $appends = ['image_url'];
     protected $primaryKey = 'user_id';
     public $incrementing = false;
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image
+            ? Storage::url($this->image)
+            : null;
+    }
 
     public function user(): BelongsTo
     {

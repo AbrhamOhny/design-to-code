@@ -104,9 +104,15 @@ label {
 button,
 input,
 #bg-nav,
+#profile-action-menu,
 .msg {
-    transition-property: opacity, color, opacity, outline, border;
-    transition-duration: 250ms, 100ms, 100ms, 50ms, 50ms;
+    transition-property:
+        opacity,
+        color,
+        opacity,
+        outline,
+        border maxHeight;
+    transition-duration: 250ms, 100ms, 100ms, 50ms, 50ms, 300ms;
     transition-timing-function: ease-in-out;
 }
 button {

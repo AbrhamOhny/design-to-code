@@ -15,7 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/services', [PageController::class, 'serviceView'])->name('services');
     Route::get('/privileges', [PageController::class, 'privilegeView'])->name('privileges');
     Route::get('/settings', [PageController::class, 'settingView'])->name('settings');
-    Route::post('deauthenticate', [AuthController::class, 'deauthenticate'])->name('deauthenticate');
+    Route::get('deauthenticate', [AuthController::class, 'deauthenticate'])->name('deauthenticate');
 });
 Route::middleware(['web', 'guest'])->group(function () {
     Route::get('login', function () {

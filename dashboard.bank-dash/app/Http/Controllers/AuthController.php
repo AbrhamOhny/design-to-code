@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -23,5 +23,15 @@ class AuthController extends Controller
         return response()->json([
             "response" => 'authenticate',
         ]);
+    }
+
+    public function deauthenticate(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
