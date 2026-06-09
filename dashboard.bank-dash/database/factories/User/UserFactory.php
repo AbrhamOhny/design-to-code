@@ -59,19 +59,19 @@ class UserFactory extends Factory
             $user->information()->create(
                 UserInformation::factory()
                     ->make()
-                    ->toArray()
+                    ->getAttributes()
             );
 
             $user->preference()->create(
                 UserPreference::factory()
                     ->make()
-                    ->toArray()
+                    ->getAttributes()
             );
 
             $user->security()->create(
                 UserSecurity::factory()
                     ->make()
-                    ->toArray()
+                    ->getAttributes()
             );
         });
     }

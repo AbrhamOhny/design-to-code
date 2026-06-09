@@ -91,7 +91,7 @@ onUnmounted(() => {
                         <img
                             width="32"
                             height="32"
-                            :src="user.information.image_url"
+                            :src="user.information.image"
                             @click="handleProfileAction"
                         />
                     </button>

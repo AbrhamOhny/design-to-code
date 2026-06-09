@@ -18,7 +18,14 @@ return new class extends Migration {
             $table->foreignId('sender_id')->constrained('transaction_handler')->cascadeOnDelete();
             $table->foreignId('receiver_id')->constrained('transaction_handler')->cascadeOnDelete();
             $table->double('amount');
+            $table->timestamps();
+        });
+        Schema::create('transaction_mail', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('transaction_log_id')->constrained('transaction_log')->cascadeOnDelete();
+            $table->string('title');
             $table->text('description')->nullable();
+            $table->boolean('is_read');
             $table->timestamps();
         });
     }

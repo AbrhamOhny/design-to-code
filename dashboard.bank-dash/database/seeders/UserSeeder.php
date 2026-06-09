@@ -18,10 +18,11 @@ class UserSeeder extends Seeder
     {
         // User::factory(10)->create();
         $knownUsers = [
-            ["name" => "Mitsuki", "email" => "test@example.com", "image" => public_path("m7th-1-1.png")],
-            ["name" => "Hitori Gotoh", "email" => "test2@example.com", "image" => public_path("bocchi.png")],
-            ["name" => "Nijika Ijichi", "email" => "test3@example.com", "image" => public_path("nijika.jpg")],
-            ["name" => "Ryo Yamada", "email" => "test4@example.com", "image" => public_path("ryo.jpg")],
+            ["name" => "Mitsuki", "title" => "Trailblazer", "email" => "mitsuki@trailblazer.com", "image" => public_path("m7th-1-1.png")],
+            ["name" => "Hitori Gotoh", "title" => "Lead Guitar", "email" => "bocchi@kessoku.com", "image" => public_path("hitori-gotoh.png")],
+            ["name" => "Ikuyo Kita", "title" => "Lead Vocalist", "email" => "ikuyo@kessoku.com", "image" => public_path("ikuyo-kita.png")],
+            ["name" => "Nijika Ijichi", "title" => "Bassist", "email" => "nijika@kessoku.com", "image" => public_path("nijika-ijichi.jpg")],
+            ["name" => "Ryo Yamada", "title" => "Drummer", "email" => "ryo@kessoku.com", "image" => public_path("ryo-yamada.jpg")],
         ];
         foreach ($knownUsers as $user) {
             $investmentLen = fake()->numberBetween(1, 5);
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
             $cardLen = fake()->numberBetween(1, 2);
             $newUser = User::factory()->withInformation([
                 'fullname' => $user["name"],
+                'title' => $user['title'],
             ])
             ->has(
                 UserInvestment::factory()->count($investmentLen),
@@ -52,10 +54,7 @@ class UserSeeder extends Seeder
                 $card->name_on_card = fake()->randomElement([$user['name'], fake()->name()]);
                 $card->save();
             }
-            $extension = pathinfo($user['image'], PATHINFO_EXTENSION);
-            $imgSaveDest = "profiles/user{$newUser->id}.{$extension}";
-            Storage::disk('public')->put($imgSaveDest, file_get_contents($user['image']));
-            $newUser->information->image = $imgSaveDest;
+            $newUser->information->image = $user['image'];
             $newUser->information->save();
         }
     }

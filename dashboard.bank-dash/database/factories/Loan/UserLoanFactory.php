@@ -51,20 +51,28 @@ class UserLoanFactory extends Factory
             $_paid = (float) 0;
             $_c = 0;
 
-            TransactionLog::create([
+            $t = TransactionLog::create([
                 'sender_id' => $bank->receiver_id,
                 'receiver_id' => $user->receiver_id,
                 'amount' => $loan->amount,
+            ]);
+            $t->mail()->create([
+                'title' => 'Loan Approvement',
                 'description' => "Dear, " . $user->email . "\nWe've accepted your loan request.\nRegards, " . $bank->name,
+                'is_read' => fake()->randomElement([true, false]),
             ]);
             while ($_paid < $loan->paid) {
                 $_paid += $loan->installment;
                 $_c += 1;
-                TransactionLog::create([
+                $t = TransactionLog::create([
                     'sender_id' => $user->receiver_id,
                     'receiver_id' => $bank->receiver_id,
                     'amount' => $loan->installment,
-                    'description' => "Loan Payment to " . $bank->name . "[" . $_c . "/" . $loan->month_duration . "]",
+                ]);
+                $t->mail()->create([
+                    'title' => "Loan Payment #{$t->id}",
+                    'description' => "Loan Payment to " . $bank->name . " [" . $_c . "/" . $loan->month_duration . "]",
+                    'is_read' => fake()->randomElement([true, false]),
                 ]);
             }
         });

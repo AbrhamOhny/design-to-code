@@ -30,11 +30,15 @@ class UserInvestmentFactory extends Factory
     public function configure(): static
     {
         return $this->afterCreating(function (UserInvestment $investment) {
-            TransactionLog::create([
+            $t = TransactionLog::create([
                 'sender_id' => $investment->user->receiver_id,
                 'receiver_id' => $investment->party_id,
                 'amount' => $investment->amount,
+            ]);
+            $t->mail()->create([
+                'title' => "Investment Confirmation #{$t->id}",
                 'description' => 'Invested to ' . $investment->party->name,
+                'is_read' => fake()->randomElement([true, false]),
             ]);
         });
     }

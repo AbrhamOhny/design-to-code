@@ -3,6 +3,7 @@
 namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,15 +27,26 @@ class UserInformation extends Model
     use HasFactory;
 
     protected $table = 'users_information';
-    protected $appends = ['image_url'];
+
     protected $primaryKey = 'user_id';
     public $incrementing = false;
 
-    public function getImageUrlAttribute()
+    protected function image(): Attribute
     {
-        return $this->image
-            ? Storage::url($this->image)
-            : null;
+        return Attribute::make(
+            get: fn(?string $value) => $value
+                ? Storage::url($value)
+                : null,
+            set: function (?string $img) {
+                if ($img == null) {
+                    return null;
+                }
+                $extension = pathinfo($img, PATHINFO_EXTENSION);
+                $destination = "profiles/user{$this->user_id}.{$extension}";
+                Storage::disk('public')->put($destination, file_get_contents($img));
+                return $destination;
+            }
+        );
     }
 
     public function user(): BelongsTo
